@@ -4,23 +4,28 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-map
 
 import { Context } from '../../state-managment/state'
 
+import mapStyles from './map.styles'
+
+const options = {
+    styles: mapStyles,
+    scrollwheel: true,
+    fullscreenControl: false,
+    mapTypeControl: false,
+    streetViewControl: false
+}
+
 const MyMapComponent = withScriptjs(withGoogleMap((props) => {
-    const [state, dispatch] = useContext(Context);
-    console.log(Context)
+    const globalState = useContext(Context);
+
     return (
-        <Context.Provider value={state}>
-            <GoogleMap
-                defaultZoom={8}
-                defaultCenter={state}
-                defaultOptions={{
-                    scrollwheel: true,
-                    fullscreenControl: false,
-                    mapTypeControl: false
-                }}
-            >
-                {props.isMarkerShown && <Marker position={state} />}
-            </GoogleMap>
-        </Context.Provider>
+        <GoogleMap
+            defaultZoom={12}
+            defaultCenter={{ lat: 43.6532, lng: -79.3832 }}
+            center={globalState.state}
+            options={options}
+        >
+            {props.isMarkerShown && <Marker position={globalState.state} />}
+        </GoogleMap>
     )
 }
 ))

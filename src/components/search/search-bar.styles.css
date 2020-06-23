@@ -1,3 +1,26 @@
-.popover {
-    z-index: 99;
+[data-reach-combobox-input] {
+  border-radius: 8px;
+  outline: none;
+  height: 100%;
+  width: 30vw;
+  padding: 10px;
+}
+
+@media only screen and (max-width: 991px) {
+  body {
+    overflow: hidden;
+  }
+  [data-reach-combobox-input] {
+    width: 95.8vw;
+  }
+}
+
+[data-reach-combobox-option] {
+  text-decoration: none;
+}
+
+[data-reach-combobox-popover] {
+  z-index: 99;
+  border-radius: 8px;
+  text-decoration: none;
 }

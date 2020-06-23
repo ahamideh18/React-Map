@@ -25,7 +25,7 @@ const Search = () => {
         }
     });
 
-    const [state, dispatch] = useContext(Context);
+    const { dispatch } = useContext(Context);
 
     const handleSelect = async (address) => {
         setValue(address, false);
