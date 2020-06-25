@@ -2,7 +2,7 @@ import React, { createContext, useReducer } from "react";
 
 import Reducer from './reducer'
 
-const initialState = { lat: 43.6532, lng: -79.3832 };
+const initialState = { coords: {lat: 43.6532, lng: -79.3832}, markers: {} };
 export const Context = createContext(initialState);
 const { Provider } = Context;
 

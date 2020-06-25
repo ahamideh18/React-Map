@@ -7,11 +7,20 @@ import Store from './state-managment/state'
 import MyMapComponent from './components/map/map.component'
 import Header from './components/navbar/navbar.component'
 
+// import { addLocations } from './firebase/firebase.utils';
+
+// import markers from './assets/map_data'
+
 import config from './config'
 
-function App() {
-  return (
-    <Store>
+class App extends React.Component {
+  // componentDidMount() {
+  //     addLocations('locations', markers.locations)
+  // }
+
+  render() {
+    return (
+      <Store>
         <Header />
         <MyMapComponent
           isMarkerShown
@@ -20,8 +29,9 @@ function App() {
           containerElement={<div style={{ height: `100vh` }} />}
           mapElement={<div style={{ height: `100%` }} />}
         />
-    </Store>
-  );
+      </Store>
+    )
+  }
 }
 
 export default App;

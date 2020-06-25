@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { Context } from '../../state-managment/state'
 
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
-import { Context } from '../../state-managment/state'
+import { firestore, convertCollectionsSnapshotToMap } from '../../firebase/firebase.utils'
 
 import mapStyles from './map.styles'
 
@@ -15,16 +16,36 @@ const options = {
 }
 
 const MyMapComponent = withScriptjs(withGoogleMap((props) => {
-    const globalState = useContext(Context);
+    const { state, dispatch } = useContext(Context);
+    useEffect(() => {
+        const markersRef = firestore.collection('locations');
+        markersRef.onSnapshot(async snapshot => {
+            const markersObj = convertCollectionsSnapshotToMap(snapshot);
+            dispatch({ type: 'ADD_MARKERS', payload: markersObj })
+        })
+    }, [dispatch])
+
+    const displayMarkers = () => {
+        var allMarkers = [];
+        for (const locationSpecs in state.markers) {
+            const id = state.markers[locationSpecs].id;
+            const location = state.markers[locationSpecs].location;
+            allMarkers.push(<Marker key={id} position={location} />)
+        }
+        return allMarkers
+    }
+
 
     return (
         <GoogleMap
             defaultZoom={12}
             defaultCenter={{ lat: 43.6532, lng: -79.3832 }}
-            center={globalState.state}
+            center={state.coords}
             options={options}
+            yesIWantToUseGoogleMapApiInternals
         >
-            {props.isMarkerShown && <Marker position={globalState.state} />}
+            {props.isMarkerShown && displayMarkers()}
+            {/* {props.isMarkerShown && <Marker position={state.coords} />} */}
         </GoogleMap>
     )
 }

@@ -1,5 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400&display=swap');
+
+@font-face {
+    font-family: 'hakuno';
+    src: url('../../assets/Fonts/hakuno/hakuno_demo-webfont.woff')format('woff'), url('../../assets/Fonts/hakuno/hakuno_demo-webfont.woff2')format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.links {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.title {
+    font-family: 'hakuno' !important;
+    font-size: 30px;
+    font-weight: normal;
+    font-style: normal;
+}
+
+::placeholder {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 400;
+}
+
 .nav {
-    background: rgba(0,0,0,0.8);
+    background: rgba(53, 69, 144, 0.8);
     z-index: 10;
     position: absolute;
     width: 100%;

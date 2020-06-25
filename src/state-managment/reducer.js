@@ -1,8 +1,15 @@
 const Reducer = (state, action) => {
     switch (action.type) {
         case 'CHANGE_COORDS':
-            const newState = action.payload;
-            return newState;
+            return {
+                ...state,
+                coords: action.payload
+            }
+        case 'ADD_MARKERS':
+            return {
+                ...state,
+                markers: action.payload
+            }
         default:
             throw new Error();
     }
