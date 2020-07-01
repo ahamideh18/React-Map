@@ -10,6 +10,11 @@ const Reducer = (state, action) => {
                 ...state,
                 markers: action.payload
             }
+        case 'SET_SELECTED':
+            return {
+                ...state,
+                selected: action.payload
+            }
         default:
             throw new Error();
     }
