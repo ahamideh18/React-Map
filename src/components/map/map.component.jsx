@@ -28,9 +28,7 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) => {
     const allMarkers = () => {
         var allMarkers = [];
         for (const locationSpecs in state.markers) {
-            const id = state.markers[locationSpecs].id;
-            const location = state.markers[locationSpecs].location;
-            const name = state.markers[locationSpecs].name;
+            const { id, location, name } = state.markers[locationSpecs];
             allMarkers.push({ id, location, name })
         }
         return allMarkers;
